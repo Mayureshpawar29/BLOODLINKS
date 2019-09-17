@@ -7,23 +7,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class ActivityHome extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
 
-    Button bt;
+public class ActivityUser extends AppCompatActivity {
+
+
+    private FirebaseAuth firebaseAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_user);
 
+        firebaseAuth=FirebaseAuth.getInstance();
 
-        bt=findViewById(R.id.bt);
+        Button bt=findViewById(R.id.btnlogout);
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ActivityHome.this,ActivityLogin.class));
+                firebaseAuth.signOut();
+                finish();
+                startActivity(new Intent(ActivityUser.this,ActivityHome.class));
+
             }
         });
-
     }
 }
