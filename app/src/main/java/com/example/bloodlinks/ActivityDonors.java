@@ -4,16 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class ActivityDonors extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Intent i=new Intent(MainActivity.this,ActivityHome.class);
-        startActivity(i);
-        finish();
+        setContentView(R.layout.activity_donors);
 
+        Intent i=getIntent();
+        Toast.makeText(this, i.getStringExtra("bg"), Toast.LENGTH_SHORT).show();
     }
 }

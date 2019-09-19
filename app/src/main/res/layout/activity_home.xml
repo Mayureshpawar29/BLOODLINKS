@@ -6,4 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".ActivityHome">
 
+    <com.ramotion.circlemenu.CircleMenuView
+        android:id="@+id/cm"
+        android:layout_width="0dp"
+        android:layout_height="356dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.36"
+        app:button_colors="@array/colors"
+        app:button_icons="@array/icons"
+        app:duration_ring="500"
+        app:duration_close="400"
+        app:duration_open="150"
+        app:distance="90dp"
+        />
+
+    <Button
+        android:id="@+id/bd"
+        android:layout_width="179dp"
+        android:layout_height="50dp"
+        android:text="DONATE"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cm"
+        app:layout_constraintVertical_bias="0.373" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
