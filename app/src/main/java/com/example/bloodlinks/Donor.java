@@ -18,6 +18,9 @@ public class Donor {
         this.latitude=latitude;
         this.longitude=longitude;
 
+
+
+
     }
 
     public String getMobile() {
