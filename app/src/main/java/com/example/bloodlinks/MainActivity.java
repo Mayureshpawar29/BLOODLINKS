@@ -18,6 +18,7 @@ new Handler().postDelayed(new Runnable() {
         startActivity(homeintent);
         finish();
     }
+    //aaa
 },SPLASH_TIME_OUT);
 
     }
