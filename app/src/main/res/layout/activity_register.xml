@@ -152,6 +152,53 @@
 
 
 
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="5dp"
+                android:text="Select Gender"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                app:fontFamily="@font/fontdiner_swanky"
+                android:paddingTop="10dp"/>
+
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="40dp"
+                android:id="@+id/radioGroup">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioMale"
+                    android:text="Male"
+                    android:textSize="15sp"
+                    app:fontFamily="@font/fontdiner_swanky"
+                    android:textColor="#FFFFFF"
+                    android:onClick="radioButtonClick"
+                    android:layout_marginRight="35dp"
+                    android:checked="true"/>
+
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioFemale"
+                    android:text="Female"
+                    android:textSize="15sp"
+                    app:fontFamily="@font/fontdiner_swanky"
+                    android:textColor="#FFFFFF"
+                    android:onClick="radioButtonClick"/>
+
+
+            </RadioGroup>
+
+
             <CheckBox
                 android:layout_width="350dp"
                 android:layout_height="60dp"
@@ -161,6 +208,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
                 android:id="@+id/checkboxage"/>
+
 
 
             <Button

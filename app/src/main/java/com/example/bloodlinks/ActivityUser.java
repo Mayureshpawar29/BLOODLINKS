@@ -13,8 +13,6 @@ public class ActivityUser extends AppCompatActivity {
 
 
     private FirebaseAuth firebaseAuth;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,5 +30,6 @@ public class ActivityUser extends AppCompatActivity {
 
             }
         });
+
     }
 }

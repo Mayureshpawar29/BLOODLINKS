@@ -1,7 +1,7 @@
 package com.example.bloodlinks;
 
 public class Donor {
-    private String name,email,mobile,bloodgroup;
+    private String name,email,mobile,bloodgroup,gender;
     private Double longitude,latitude;
     public static double longi,lati;
 
@@ -9,7 +9,7 @@ public class Donor {
 
     }
 
-    public Donor(String name, String email,String mobile,String bloodgroup, Double latitude, Double longitude){
+    public Donor(String name, String email,String mobile,String bloodgroup, Double latitude, Double longitude, String gender){
 
         this.name=name;
         this.email=email;
@@ -17,11 +17,10 @@ public class Donor {
         this.bloodgroup=bloodgroup;
         this.latitude=latitude;
         this.longitude=longitude;
-
-
-
-
+        this.gender=gender;
     }
+
+
 
     public String getMobile() {
         return mobile;
@@ -72,5 +71,11 @@ public class Donor {
     }
 
 
+    public String getGender() {
+        return gender;
+    }
 
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 }
