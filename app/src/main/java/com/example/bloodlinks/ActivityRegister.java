@@ -49,7 +49,7 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference donorsRef = db.collection("Donors");
-    private String bloodgroup,gender;
+    private String bloodgroup,gender="Male";
     private LocationManager locationManager;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private ProgressDialog progressDialog;
@@ -122,7 +122,7 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
     private void saveData() {
 
 
-        String uname = etregisteremail.getText().toString().trim();
+        String uname = etregistername.getText().toString().trim();
         String umail = etregisteremail.getText().toString().trim();
         String umob = etregistermobile.getText().toString().trim();
 
@@ -215,7 +215,7 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
                                 if(task.isSuccessful()){
                                     saveData();
                                     progressDialog.dismiss();
-                                    Toast.makeText(ActivityRegister.this, "registered successfully", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ActivityRegister.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
 
                                     finish();
 
@@ -225,14 +225,14 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
                                 else{
 
                                     progressDialog.dismiss();
-                                    Toast.makeText(ActivityRegister.this, "unsuccessful", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ActivityRegister.this, "Registered Unsuccessful", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
 
             }
             else{
-
+                Toast.makeText(this, "Location required !!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
             }
 

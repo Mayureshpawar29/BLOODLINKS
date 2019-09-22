@@ -61,7 +61,7 @@ public class ActivityHome extends AppCompatActivity {
 
         cm.setEventListener(new CircleMenuView.EventListener() {
             public void onButtonClickAnimationEnd(@NonNull CircleMenuView view, int index) {
-                String bgs[]={"a+","a-","b+","b-","o+","o-","ab+","ab-"};
+                String bgs[]={"A+","A-","B+","B-","O+","O-","AB+","AB-"};
                 Intent i=new Intent(ActivityHome.this,ActivityDonors.class);
                 i.putExtra("bg",bgs[index]);
                 startActivity(i);
