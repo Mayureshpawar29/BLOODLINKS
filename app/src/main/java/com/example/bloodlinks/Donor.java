@@ -1,5 +1,9 @@
 package com.example.bloodlinks;
 
+import android.location.Location;
+
+import java.util.Comparator;
+
 public class Donor {
     private String name,email,mobile,bloodgroup,gender;
     private Double longitude,latitude;
@@ -78,4 +82,42 @@ public class Donor {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+
+    public String toString(){
+        return "["+longitude+"]";
+    }
+
+
+    public static Comparator<Donor> StuNameComparator = new Comparator<Donor>() {
+
+        public int compare(Donor s1, Donor s2) {
+
+            Location locationA = new Location("point A");
+
+            locationA.setLatitude(lati);
+            locationA.setLongitude(longi);
+
+            Location locationB = new Location("point B");
+
+            locationB.setLatitude(s1.getLatitude());
+            locationB.setLongitude(s1.getLongitude());
+
+            Location locationC = new Location("point C");
+
+            locationC.setLatitude(s2.getLatitude());
+            locationC.setLongitude(s2.getLongitude());
+
+
+
+            float distance = locationA.distanceTo(locationB);
+            float distance1 = locationA.distanceTo(locationC);
+
+            //ascending order
+            return Float.compare(distance,distance1);
+
+            //descending order
+            //return StudentName2.compareTo(StudentName1);
+        }};
+
 }

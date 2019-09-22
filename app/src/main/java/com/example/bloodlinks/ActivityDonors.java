@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,7 +23,10 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 
 import javax.annotation.Nullable;
 
@@ -33,9 +37,10 @@ public class ActivityDonors extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private ArrayList<String>names=new ArrayList<>();
     private ArrayList<String>gen=new ArrayList<>();
-    private ArrayList<Double>dist=new ArrayList<>();
+    private ArrayList<Float>dist=new ArrayList<>();
     private ArrayList<String>phone=new ArrayList<>();
     private int count=0;
+    private ArrayList<Donor> donorArrayList=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,15 +60,49 @@ public class ActivityDonors extends AppCompatActivity {
                             return;
                         }
                         for(QueryDocumentSnapshot doc:queryDocumentSnapshots) {
-                            names.add(doc.getString("name"));
-                            gen.add(doc.getString("gender"));
-                            dist.add(doc.getDouble("latitude")-doc.getDouble("longitude"));
-                            phone.add(doc.getString("mobile"));
+                            Donor d=doc.toObject(Donor.class);
+                            donorArrayList.add(d);
+                            //names.add(doc.getString("name"));
+                            //gen.add(doc.getString("gender"));
+                            //dist.add(doc.getDouble("latitude")-doc.getDouble("longitude"));
+                            //phone.add(doc.getString("mobile"));
+
                             count++;
                         }
-                        if(count!=0)
-                            showView(count);
-                        else {
+
+                        //sort function
+                        Collections.sort(donorArrayList,Donor.StuNameComparator);
+                        if(count!=0){
+
+                            Iterator it = donorArrayList.iterator();
+                            while (it.hasNext()){
+
+                                Donor dr=(Donor)it.next();
+                                names.add(dr.getName());
+                                gen.add(dr.getGender());
+
+                                //logic for calculating distance
+                                Location locationA = new Location("point A");
+
+                                locationA.setLatitude(Donor.lati);
+                                locationA.setLongitude(Donor.longi);
+
+                                Location locationB = new Location("point B");
+
+                                locationB.setLatitude(dr.getLatitude());
+                                locationB.setLongitude(dr.getLongitude());
+
+                                DecimalFormat numberFormat = new DecimalFormat("#.00");
+
+                                Float num=Float.valueOf(numberFormat.format(locationA.distanceTo(locationB)/1000));
+                                dist.add(num);
+                                phone.add(dr.getMobile());
+
+                            }
+
+                                showView(count);
+                        }
+                        else{
                             Toast.makeText(ActivityDonors.this, "No donors with specified Blood group !!", Toast.LENGTH_SHORT).show();
                             finish();
                         }

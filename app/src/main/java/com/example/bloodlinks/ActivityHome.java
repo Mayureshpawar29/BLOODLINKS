@@ -23,6 +23,12 @@ public class ActivityHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
+        Donor.longi=73.8498055;
+        Donor.lati=18.4588189;
+
+
+
         CircleMenuView cm=findViewById(R.id.cm);
         Button b=findViewById(R.id.bd);
 
