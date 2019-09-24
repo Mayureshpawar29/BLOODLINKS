@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -42,14 +41,21 @@ public class ActivityDonors extends AppCompatActivity {
     private int count=0;
     private ArrayList<Donor> donorArrayList=new ArrayList<>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donors);
-         el=findViewById(R.id.elv);
+
+
+        el=findViewById(R.id.elv);
         progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCanceledOnTouchOutside(false);
         Intent intent=getIntent();
         Toast.makeText(this, intent.getStringExtra("bg"), Toast.LENGTH_SHORT).show();
+
 
         dr.whereEqualTo("bloodgroup",intent.getStringExtra("bg"))
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -75,7 +81,7 @@ public class ActivityDonors extends AppCompatActivity {
                         if(count!=0){
 
                             Iterator it = donorArrayList.iterator();
-                            while (it.hasNext()){
+                            while(it.hasNext()){
 
                                 Donor dr=(Donor)it.next();
                                 names.add(dr.getName());
@@ -99,8 +105,9 @@ public class ActivityDonors extends AppCompatActivity {
                                 phone.add(dr.getMobile());
 
                             }
-
-                                showView(count);
+                            progressDialog.show();
+                            showView(count);
+                            progressDialog.dismiss();
                         }
                         else{
                             Toast.makeText(ActivityDonors.this, "No donors with specified Blood group !!", Toast.LENGTH_SHORT).show();
@@ -110,15 +117,11 @@ public class ActivityDonors extends AppCompatActivity {
                 });
     }
 
-    void showView(int count) {
-        progressDialog.show();
+    void showView(final int count) {
         ExpandingItem ei[]=new ExpandingItem[count+1];
         View p[],d[];
         p=new View[count+1];
         d=new View[count+1];
-
-        for(int i=0;i<count;i++)
-            Log.w("data1",names.get(i)+gen.get(i)+phone.get(i)+dist.get(i));
 
         for(int i=0;i<count;i++) {
             ei[i]=el.createNewItem(R.layout.exp_item);
@@ -146,7 +149,6 @@ public class ActivityDonors extends AppCompatActivity {
             else
                 ei[i].setIndicatorIconRes(R.drawable.ic_woman);
             ei[i].setIndicatorColorRes(R.color.red_icon);
-            progressDialog.dismiss();
         }
     }
 }

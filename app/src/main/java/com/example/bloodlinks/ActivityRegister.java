@@ -225,7 +225,7 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
                                 else{
 
                                     progressDialog.dismiss();
-                                    Toast.makeText(ActivityRegister.this, "Registered Unsuccessful", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ActivityRegister.this, "Registration Unsuccessful", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
