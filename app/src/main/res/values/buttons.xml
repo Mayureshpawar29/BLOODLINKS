@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="icons">
-        <item>@drawable/ic_android_black_24dp</item>
-        <item>@drawable/ic_android_black_24dp</item>
-        <item>@drawable/ic_android_black_24dp</item>
-        <item>@drawable/ic_android_black_24dp</item>
-        <item>@drawable/ic_android_black_24dp</item>
-        <item>@drawable/ic_android_black_24dp</item>
-        <item>@drawable/ic_android_black_24dp</item>
-        <item>@drawable/ic_android_black_24dp</item>
+        <item>@drawable/a</item>
+        <item>@drawable/a2</item>
+        <item>@drawable/ab</item>
+        <item>@drawable/ab2</item>
+        <item>@drawable/b1</item>
+        <item>@drawable/b2</item>
+        <item>@drawable/o1</item>
+        <item>@drawable/o2</item>
     </array>
     <array name="colors">
         <item>@android:color/holo_blue_light</item>
