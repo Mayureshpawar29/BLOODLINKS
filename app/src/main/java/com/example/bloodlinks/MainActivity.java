@@ -1,15 +1,12 @@
 package com.example.bloodlinks;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
-
+public class  MainActivity extends AppCompatActivity {
+    private static int SPLASH_TIME_OUT = 4000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,11 +14,12 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent splash=new Intent(MainActivity.this,ActivityHome.class);
-                startActivity(splash);
+                Intent homeintent = new Intent(MainActivity.this, ActivityHome.class);
+                startActivity(homeintent);
                 finish();
             }
-        },500);
+            //aaa
+        },SPLASH_TIME_OUT);
 
     }
 }
