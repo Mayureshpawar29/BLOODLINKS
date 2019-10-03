@@ -5,7 +5,7 @@ import android.location.Location;
 import java.util.Comparator;
 
 public class Donor {
-    private String name,email,mobile,bloodgroup,gender;
+    private String name,email,mobile,bloodgroup,gender,location;
     private Double longitude,latitude;
     public static double longi,lati;
 
@@ -13,7 +13,7 @@ public class Donor {
 
     }
 
-    public Donor(String name, String email,String mobile,String bloodgroup, Double latitude, Double longitude, String gender){
+    public Donor(String name, String email,String mobile,String bloodgroup, Double latitude, Double longitude, String location, String gender){
 
         this.name=name;
         this.email=email;
@@ -21,6 +21,7 @@ public class Donor {
         this.bloodgroup=bloodgroup;
         this.latitude=latitude;
         this.longitude=longitude;
+        this.location=location;
         this.gender=gender;
     }
 
@@ -72,6 +73,14 @@ public class Donor {
 
     public void setLatitude(Double latitude) {
         this.latitude = latitude;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
 

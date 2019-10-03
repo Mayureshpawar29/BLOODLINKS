@@ -38,6 +38,7 @@ public class ActivityDonors extends AppCompatActivity {
     private ArrayList<String>gen=new ArrayList<>();
     private ArrayList<Float>dist=new ArrayList<>();
     private ArrayList<String>phone=new ArrayList<>();
+    private ArrayList<String>loc=new ArrayList<>();
     private int count=0;
     private ArrayList<Donor> donorArrayList=new ArrayList<>();
 
@@ -68,51 +69,40 @@ public class ActivityDonors extends AppCompatActivity {
                         for(QueryDocumentSnapshot doc:queryDocumentSnapshots) {
                             Donor d=doc.toObject(Donor.class);
                             donorArrayList.add(d);
-                            //names.add(doc.getString("name"));
-                            //gen.add(doc.getString("gender"));
-                            //dist.add(doc.getDouble("latitude")-doc.getDouble("longitude"));
-                            //phone.add(doc.getString("mobile"));
-
                             count++;
                         }
 
                         //sort function
                         Collections.sort(donorArrayList,Donor.StuNameComparator);
-                        if(count!=0){
 
-                            Iterator it = donorArrayList.iterator();
-                            while(it.hasNext()){
+                        Iterator it = donorArrayList.iterator();
+                        while(it.hasNext()){
 
-                                Donor dr=(Donor)it.next();
-                                names.add(dr.getName());
-                                gen.add(dr.getGender());
+                            Donor dr=(Donor)it.next();
+                            names.add(dr.getName());
+                            gen.add(dr.getGender());
+                            loc.add(dr.getLocation());
 
-                                //logic for calculating distance
-                                Location locationA = new Location("point A");
+                            //logic for calculating distance
+                            Location locationA = new Location("point A");
 
-                                locationA.setLatitude(Donor.lati);
-                                locationA.setLongitude(Donor.longi);
+                            locationA.setLatitude(Donor.lati);
+                            locationA.setLongitude(Donor.longi);
 
-                                Location locationB = new Location("point B");
+                            Location locationB = new Location("point B");
 
-                                locationB.setLatitude(dr.getLatitude());
-                                locationB.setLongitude(dr.getLongitude());
+                            locationB.setLatitude(dr.getLatitude());
+                            locationB.setLongitude(dr.getLongitude());
 
-                                DecimalFormat numberFormat = new DecimalFormat("#.00");
+                            DecimalFormat numberFormat = new DecimalFormat("#.00");
 
-                                Float num=Float.valueOf(numberFormat.format(locationA.distanceTo(locationB)/1000));
-                                dist.add(num);
-                                phone.add(dr.getMobile());
+                            Float num=Float.valueOf(numberFormat.format(locationA.distanceTo(locationB)/1000));
+                            dist.add(num);
+                            phone.add(dr.getMobile());
 
-                            }
-                            progressDialog.show();
-                            showView(count);
-                            progressDialog.dismiss();
                         }
-                        else{
-                            Toast.makeText(ActivityDonors.this, "No donors with specified Blood group !!", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }
+                        showView(count);
+
                     }
                 });
     }
@@ -125,7 +115,7 @@ public class ActivityDonors extends AppCompatActivity {
 
         for(int i=0;i<count;i++) {
             ei[i]=el.createNewItem(R.layout.exp_item);
-            ei[i].createSubItems(2);
+            ei[i].createSubItems(3);
             ((TextView)ei[i].findViewById(R.id.titem)).setText(names.get(i));
             p[i]=ei[i].getSubItemView(0);
             ((ImageView)p[i].findViewById(R.id.ivsubitem)).setImageResource(R.drawable.ic_phone_in_talk_black_24dp);
@@ -140,8 +130,13 @@ public class ActivityDonors extends AppCompatActivity {
                     finish();
                 }
             });
+
             d[i]=ei[i].getSubItemView(1);
             ((ImageView)d[i].findViewById(R.id.ivsubitem)).setImageResource(R.drawable.ic_person_pin_circle_black_24dp);
+            ((TextView)d[i].findViewById(R.id.tsubitem)).setText(loc.get(i));
+
+            d[i]=ei[i].getSubItemView(2);
+            ((ImageView)d[i].findViewById(R.id.ivsubitem)).setImageResource(R.drawable.distance);
             ((TextView)d[i].findViewById(R.id.tsubitem)).setText(" "+dist.get(i)+" km");
 
             if(gen.get(i).equals("Male"))

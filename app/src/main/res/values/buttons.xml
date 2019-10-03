@@ -2,22 +2,22 @@
 <resources>
     <array name="icons">
         <item>@drawable/a</item>
-        <item>@drawable/a2</item>
+        <item>@drawable/b</item>
+        <item>@drawable/o</item>
         <item>@drawable/ab</item>
-        <item>@drawable/ab2</item>
-        <item>@drawable/b1</item>
-        <item>@drawable/b2</item>
-        <item>@drawable/o1</item>
-        <item>@drawable/o2</item>
+        <item>@drawable/am</item>
+        <item>@drawable/bm</item>
+        <item>@drawable/om</item>
+        <item>@drawable/abm</item>
     </array>
     <array name="colors">
-        <item>@android:color/holo_blue_light</item>
-        <item>@android:color/holo_green_dark</item>
-        <item>@android:color/holo_red_light</item>
-        <item>@android:color/holo_purple</item>
-        <item>@android:color/holo_orange_light</item>
-        <item>@android:color/holo_blue_light</item>
-        <item>@android:color/holo_green_dark</item>
-        <item>@android:color/holo_red_light</item>
+        <item>@color/red_icon</item>
+        <item>@color/red_icon</item>
+        <item>@color/red_icon</item>
+        <item>@color/red_icon</item>
+        <item>@color/red_icon</item>
+        <item>@color/red_icon</item>
+        <item>@color/red_icon</item>
+        <item>@color/red_icon</item>
     </array>
 </resources>

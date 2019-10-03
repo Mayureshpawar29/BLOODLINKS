@@ -12,8 +12,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
@@ -26,47 +24,75 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.ramotion.circlemenu.CircleMenuView;
+
+import javax.annotation.Nullable;
 
 public class ActivityHome extends AppCompatActivity {
     private LocationManager locationManager;
     private Task<Void> fusedLocationProviderClient;
-    private ConnectivityManager connectivityManager;
-    private NetworkInfo networkInfo;
     private CircleMenuView cm;
-    private Button b;
+    private Button bd;
+    private Button bb;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference dr = db.collection("Donors");
+    private int count=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         cm=findViewById(R.id.cm);
-        b=findViewById(R.id.bd);
-
-        connectivityManager = (ConnectivityManager)getSystemService(CONNECTIVITY_SERVICE);
-        networkInfo=connectivityManager.getActiveNetworkInfo();
-
-
-        if(networkInfo != null && networkInfo.isConnected()==true )
-        {
-            Toast.makeText(this, "Network Available", Toast.LENGTH_SHORT).show();
-
-        }
-        else
-        {
-            Toast.makeText(this, "Network Not Available", Toast.LENGTH_SHORT).show();
-
-        }
+        bd=findViewById(R.id.bd);
+        bb=findViewById(R.id.bb);
 
         cm.setEventListener(new CircleMenuView.EventListener() {
-            public void onButtonClickAnimationEnd(@NonNull CircleMenuView view, int index) {
-                String bgs[]={"A+","A-","B+","B-","O+","O-","AB+","AB-"};
-                Intent i=new Intent(ActivityHome.this,ActivityDonors.class);
-                i.putExtra("bg",bgs[index]);
-                startActivity(i);
+            @Override
+            public void onButtonClickAnimationEnd(@NonNull CircleMenuView view, final int index) {
+                final String bgs[]={"A+","B+","O+","AB+","A-","B-","O-","AB-"};
+
+                dr.whereEqualTo("bloodgroup",bgs[index])
+                        .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                             @Override
+                             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                                 if (e != null) {
+                                     Toast.makeText(ActivityHome.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
+                                     return;
+                                 }
+                                 for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                                     Donor d = doc.toObject(Donor.class);
+                                     count++;
+                                 }
+                                 if(count!=0) {
+                                     Intent i = new Intent(ActivityHome.this, ActivityDonors.class);
+                                     i.putExtra("bg", bgs[index]);
+                                     startActivity(i);
+                                 } else
+                                     Toast.makeText(ActivityHome.this, "No donors with specified Blood group !!", Toast.LENGTH_SHORT).show();
+                                 bd.setEnabled(true);
+                                 count=0;
+                             }
+                         });
+
+            }
+
+            @Override
+            public void onMenuOpenAnimationStart(@NonNull CircleMenuView view) {
+                bd.setEnabled(false);
+            }
+
+            @Override
+            public void onMenuCloseAnimationStart(@NonNull CircleMenuView view) {
+                bd.setEnabled(true);
             }
         });
 
-        b.setOnClickListener(new View.OnClickListener() {
+        bd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(ActivityHome.this,ActivityLogin.class);
@@ -74,7 +100,12 @@ public class ActivityHome extends AppCompatActivity {
             }
         });
 
-
+        bb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Jump to map
+            }
+        });
 
     }
 
