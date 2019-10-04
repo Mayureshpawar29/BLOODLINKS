@@ -103,7 +103,7 @@ public class ActivityHome extends AppCompatActivity {
         bb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Jump to map
+                startActivity(new Intent(ActivityHome.this,MapsActivity.class));
             }
         });
 

@@ -23,6 +23,7 @@ public class Donor {
         this.longitude=longitude;
         this.location=location;
         this.gender=gender;
+
     }
 
 

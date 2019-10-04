@@ -1,6 +1,16 @@
 <resources>
+    <array name="menuOptions">
+        <item>Home</item>
+
+    </array>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+
+    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="app_name">Bloodlinks</string>
 
+
+    <string name="title_activity_maps">Map</string>
     <string-array name="bloodgroup">
         <item>A+</item>
         <item>A-</item>
@@ -11,15 +21,6 @@
         <item>AB+</item>
         <item>AB-</item>
     </string-array>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-
-    <array name="menuOptions">
-        <item>Home</item>
-
-    </array>
 
 
 </resources>

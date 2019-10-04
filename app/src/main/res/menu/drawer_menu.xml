@@ -8,6 +8,9 @@
             android:title="Home"
             android:icon="@drawable/ic_home"/>
 
+        <item android:id="@+id/nav_profile"
+            android:title="Edit Profile"
+            android:icon="@drawable/ic_person"/>
 
         <item android:id="@+id/nav_logout"
             android:title="Logout"

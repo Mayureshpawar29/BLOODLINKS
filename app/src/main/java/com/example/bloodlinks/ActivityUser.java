@@ -13,9 +13,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,26 +33,45 @@ public class ActivityUser extends AppCompatActivity implements NavigationView.On
 
     private Toolbar toolBar;
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
     private DrawerLayout drawer;
     private ArrayList<String> mTitles = new ArrayList<>();
+    private TextView txtUsername,txtUseremail;
+    private NavigationView navigationView;
+    private View headerView;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference donorsRef = db.collection("Donors");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        firebaseAuth=FirebaseAuth.getInstance();
+        setupViews();
 
 
-        toolBar = findViewById(R.id.actionbar);
+        txtUseremail.setText(firebaseUser.getEmail());
+        donorsRef.whereEqualTo("email",firebaseUser.getEmail()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                for(QueryDocumentSnapshot documentSnapshot:queryDocumentSnapshots){
+                    Donor donor = documentSnapshot.toObject(Donor.class);
+                    txtUsername.setText(donor.getName());
+
+                }
+
+
+            }
+        });
+
         setSupportActionBar(toolBar);
         mTitles = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.menuOptions)));
 
 
-        drawer = findViewById(R.id.drawer_layout);
 
         final LinearLayout holder = findViewById(R.id.holder);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+
         navigationView.setNavigationItemSelectedListener(this);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         {
@@ -83,11 +110,31 @@ public class ActivityUser extends AppCompatActivity implements NavigationView.On
 
     }
 
+
+    private void setupViews(){
+
+        firebaseAuth=FirebaseAuth.getInstance();
+        firebaseUser=firebaseAuth.getCurrentUser();
+
+        navigationView = findViewById(R.id.nav_view);
+        toolBar = findViewById(R.id.actionbar);
+        drawer = findViewById(R.id.drawer_layout);
+
+        headerView = navigationView.getHeaderView(0);
+        txtUseremail=headerView.findViewById(R.id.txtUseremail);
+        txtUsername=headerView.findViewById(R.id.txtUsername);
+
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+                break;
+
+            case R.id.nav_profile:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
                 break;
 
             case R.id.nav_logout:
@@ -102,4 +149,6 @@ public class ActivityUser extends AppCompatActivity implements NavigationView.On
         return true;
 
     }
+
+
 }
