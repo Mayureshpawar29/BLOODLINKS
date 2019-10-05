@@ -1,44 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityLogin"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ActivityLogin">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-
-
-        <View
-            android:id="@+id/view"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="275dp"
-            android:background="@drawable/bglogin"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:ignore="MissingConstraints">
 
-        <TextView
-            android:id="@+id/txtsigninhere"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="Sign in"
-            android:fontFamily="@font/fontdiner_swanky"
-            app:layout_constraintBottom_toBottomOf="@+id/view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.083"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/view"
-            app:layout_constraintVertical_bias="0.171"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="275dp"
+                android:background="@drawable/bglogin"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+            <TextView
+                android:id="@+id/txtsigninhere"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:fontFamily="@font/fontdiner_swanky"
+                android:text="Sign in"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.202"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view"
+                app:layout_constraintVertical_bias="0.226" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
         <EditText
@@ -46,103 +53,63 @@
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
             android:background="@drawable/bgedittext"
             android:hint="Email"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.296"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view"
-            app:layout_constraintVertical_bias="0.082" />
+            android:layout_marginTop="40dp" />
+
+
 
         <EditText
             android:id="@+id/etloginpassword"
-            android:inputType="textPassword"
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
             android:background="@drawable/bgedittext"
             android:hint="Password"
+            android:inputType="textPassword"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etloginemail"
-            app:layout_constraintVertical_bias="0.09" />
+            android:layout_marginTop="30dp" />
+
+
+
 
         <Button
             android:id="@+id/btnsignin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
             android:background="@drawable/bgbutton"
             android:text="Sign In"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etloginpassword"
-            app:layout_constraintVertical_bias="0.134" />
-
+            android:layout_marginTop="30dp" />
 
         <TextView
             android:id="@+id/txtforgotpassword"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:layout_marginTop="20dp"
             android:text="forgot password?"
-            app:layout_constraintBottom_toTopOf="@+id/txtgotoregister"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnsignin"
-            app:layout_constraintVertical_bias="0.0" />
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_horizontal"/>
+
 
         <TextView
             android:id="@+id/txtgotoregister"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:paddingTop="5dp"
-            android:text="Don't have a Donor account? Sign up now."
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnsignin"
-            app:layout_constraintVertical_bias="1.0" />
+            android:layout_marginTop="40dp"
+            android:gravity="center_vertical"
+            android:text="Don't have a Donor account? Sign up now." />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
 
 
 </androidx.core.widget.NestedScrollView>

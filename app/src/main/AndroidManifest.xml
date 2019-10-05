@@ -15,8 +15,12 @@
 
         <activity
             android:name=".ActivityUser"
-            android:screenOrientation="portrait" />
-        <activity android:name=".ActivityResetPassword"></activity>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity android:name=".ActivityResetPassword"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".ActivityDonors"
