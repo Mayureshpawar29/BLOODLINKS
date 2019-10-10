@@ -9,8 +9,8 @@
 
     <Button
         android:id="@+id/bd"
-        android:layout_width="133dp"
-        android:layout_height="43dp"
+        android:layout_width="130dp"
+        android:layout_height="45dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/bgbutton"
         android:fontFamily="@font/fredoka_one"
@@ -24,12 +24,12 @@
 
     <Button
         android:id="@+id/bb"
-        android:layout_width="324dp"
-        android:layout_height="51dp"
+        android:layout_width="320dp"
+        android:layout_height="45dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/bgbutton"
         android:fontFamily="@font/fredoka_one"
-        android:text="Locate nearest BloodBank"
+        android:text="Locate nearest Bloodbank"
         android:textAllCaps="false"
         android:textColor="@color/cardview_light_background"
         android:textSize="18sp"
@@ -40,7 +40,7 @@
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="131dp"
+        android:layout_height="130dp"
         android:background="@drawable/bghome"
         app:layout_constraintBottom_toTopOf="@+id/cm"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,8 +48,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_width="310dp"
-        android:layout_height="62dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="36dp"
@@ -58,7 +58,7 @@
         android:textColor="#FFFFFF"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.26"
+        app:layout_constraintHorizontal_bias="0.246"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

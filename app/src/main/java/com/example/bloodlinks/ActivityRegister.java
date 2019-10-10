@@ -33,6 +33,7 @@ import com.google.android.gms.tasks.Task;
 
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
@@ -207,7 +208,7 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
 
         if(validate()){
 
-
+            progressDialog.setTitle("Creating User");
             progressDialog.show();
             String uemail = etregisteremail.getText().toString().trim();
             String upassword = etregisterpassword.getText().toString().trim();
@@ -235,11 +236,7 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
                             if(task.isSuccessful()){
                                 saveData();
                                 progressDialog.dismiss();
-                                Toast.makeText(ActivityRegister.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-
-                                finish();
-
-                                startActivity(new Intent(ActivityRegister.this,ActivityUser.class));
+                                sendEmailVerification();
 
                             }
                             else{
@@ -259,5 +256,28 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
         radioButton = findViewById(radioId);
         gender = radioButton.getText().toString();
 
+    }
+
+    private void sendEmailVerification(){
+
+        FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
+        if (firebaseUser!=null) {
+
+            firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+
+                        Toast.makeText(ActivityRegister.this, "Registration successful,verification email sent", Toast.LENGTH_SHORT).show();
+                        firebaseAuth.signOut();
+                        finish();
+
+                        startActivity(new Intent(ActivityRegister.this,ActivityLogin.class));
+
+                    }
+                }
+            });
+
+        }
     }
 }

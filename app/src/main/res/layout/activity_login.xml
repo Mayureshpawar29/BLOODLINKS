@@ -16,35 +16,34 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="275dp"
+            android:layout_height="wrap_content"
             tools:ignore="MissingConstraints">
 
             <View
                 android:id="@+id/view"
                 android:layout_width="match_parent"
-                android:layout_height="275dp"
+                android:layout_height="210dp"
                 android:background="@drawable/bglogin"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
             <TextView
                 android:id="@+id/txtsigninhere"
-                android:layout_width="209dp"
-                android:layout_height="76dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/alfa_slab_one"
                 android:text="Sign in"
                 android:textColor="#FFFFFF"
                 android:textSize="34sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.202"
+                app:layout_constraintHorizontal_bias="0.093"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/view"
-                app:layout_constraintVertical_bias="0.226" />
+                app:layout_constraintVertical_bias="0.166" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
         <EditText
@@ -52,14 +51,12 @@
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
             android:background="@drawable/bgedittext"
-            android:hint="Email"
             android:inputType="text"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:layout_marginTop="40dp" />
-
-
+            android:drawableLeft="@drawable/ic_person"/>
 
         <EditText
             android:id="@+id/etloginpassword"
@@ -67,7 +64,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/bgedittext"
-            android:hint="Password"
+            android:drawableLeft="@drawable/ic_vpn_key"
             android:inputType="textPassword"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
@@ -79,7 +76,7 @@
             android:layout_width="128dp"
             android:layout_height="47dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="45dp"
             android:background="@drawable/bgbutton"
             android:fontFamily="@font/fredoka_one"
             android:text="Sign In"
@@ -93,7 +90,6 @@
             android:layout_height="35dp"
             android:text="Forgot password?"
             android:layout_marginTop="15dp"
-            android:fontFamily="@font/fredoka_one"
             android:gravity="center_vertical"
             android:layout_gravity="center_horizontal"/>
 
@@ -101,10 +97,9 @@
         <TextView
             android:id="@+id/txtgotoregister"
             android:layout_width="wrap_content"
-            android:fontFamily="@font/fredoka_one"
             android:layout_height="35dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:gravity="center_vertical"
             android:text="Don't have a Donor account? Sign up now." />
 

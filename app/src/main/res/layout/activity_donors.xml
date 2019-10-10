@@ -9,7 +9,7 @@
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="131dp"
+        android:layout_height="130dp"
         android:background="@drawable/bghome"
         app:layout_constraintBottom_toTopOf="@+id/cm"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,15 +17,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_width="229dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
         android:fontFamily="@font/alfa_slab_one"
         android:text="Donors"
         android:textColor="#FFFFFF"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.237"
+        app:layout_constraintHorizontal_bias="0.23"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

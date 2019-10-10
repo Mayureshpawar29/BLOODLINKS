@@ -83,6 +83,7 @@ public class ProfileFragment extends Fragment{
 
                     progressDialog.setTitle("Updating");
                     progressDialog.show();
+
                     placesRef.whereEqualTo("location",actv.getText().toString())
                             .addSnapshotListener(new EventListener<QuerySnapshot>() {
                                 @Override
@@ -126,7 +127,7 @@ public class ProfileFragment extends Fragment{
                                                 txtusername.setText(etusername.getText().toString());
 
                                                 progressDialog.dismiss();
-                                                Toast.makeText(getContext(),"successful",Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getContext(),"Updated",Toast.LENGTH_SHORT).show();
 
                                             }
                                         }
