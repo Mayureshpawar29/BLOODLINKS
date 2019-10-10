@@ -127,7 +127,6 @@ public class ActivityDonors extends AppCompatActivity {
                     Intent in=new Intent(Intent.ACTION_DIAL);
                     in.setData(Uri.parse("tel:"+ph.getText()));
                     startActivity(in);
-                    finish();
                 }
             });
 
@@ -145,5 +144,12 @@ public class ActivityDonors extends AppCompatActivity {
                 ei[i].setIndicatorIconRes(R.drawable.ic_woman);
             ei[i].setIndicatorColorRes(R.color.red_icon);
         }
+    }
+
+    @Override
+    public void finish() {
+        Intent x=new Intent(ActivityDonors.this,ActivityHome.class);
+        startActivity(x);
+        super.finish();
     }
 }

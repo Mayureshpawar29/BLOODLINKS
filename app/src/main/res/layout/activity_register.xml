@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ActivityRegister"
-    android:orientation="vertical"
-    android:background="@drawable/bgregister">
+    android:background="@drawable/bgregister"
+    android:orientation="vertical">
 
 
 
@@ -16,40 +16,38 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="200dp"
-                android:layout_height="50dp"
+                android:layout_width="218dp"
+                android:layout_height="74dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="15dp"
                 android:text="Sign up"
                 android:textColor="#FFFFFF"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                app:fontFamily="@font/fontdiner_swanky" />
+                android:textSize="35sp"
+                app:fontFamily="@font/alfa_slab_one" />
 
             <TextView
                 android:layout_width="200dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="30dp"
+                android:paddingTop="10dp"
                 android:text="Name"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
-                app:fontFamily="@font/fontdiner_swanky"
-                android:paddingTop="10dp"/>
-
-
+                app:fontFamily="@font/alfa_slab_one" />
 
 
             <EditText
+                android:id="@+id/etregistername"
                 android:layout_width="350dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/bginput"
                 android:layout_marginTop="5dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
+                android:background="@drawable/bgedittext"
+                android:fontFamily="sans-serif"
                 android:hint="Name"
-                android:id="@+id/etregistername"/>
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp" />
 
 
             <TextView
@@ -60,7 +58,7 @@
                 android:text="Email"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
-                app:fontFamily="@font/fontdiner_swanky"
+                app:fontFamily="@font/alfa_slab_one"
                 android:paddingTop="10dp"/>
 
 
@@ -68,7 +66,7 @@
                 android:layout_width="350dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/bginput"
+                android:background="@drawable/bgedittext"
                 android:layout_marginTop="5dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
@@ -85,14 +83,14 @@
                 android:text="Mobile"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
-                app:fontFamily="@font/fontdiner_swanky"
+                app:fontFamily="@font/alfa_slab_one"
                 android:paddingTop="10dp"/>
 
             <EditText
                 android:layout_width="350dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/bginput"
+                android:background="@drawable/bgedittext"
                 android:layout_marginTop="5dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
@@ -107,17 +105,18 @@
                 android:text="Location"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
-                app:fontFamily="@font/fontdiner_swanky"
+                app:fontFamily="@font/alfa_slab_one"
                 android:paddingTop="10dp"/>
 
             <AutoCompleteTextView
                 android:layout_width="350dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/bginput"
+                android:background="@drawable/bgedittext"
                 android:layout_marginTop="5dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                android:textSize="18sp"
                 android:hint="Select a nearby place"
                 android:completionThreshold="1"
                 android:completionHint="Select a nearby place"
@@ -134,7 +133,7 @@
                 android:text="Password"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
-                app:fontFamily="@font/fontdiner_swanky"
+                app:fontFamily="@font/alfa_slab_one"
                 android:paddingTop="10dp"/>
 
 
@@ -143,7 +142,7 @@
                 android:layout_width="350dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/bginput"
+                android:background="@drawable/bgedittext"
                 android:layout_marginTop="5dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
@@ -160,7 +159,7 @@
                 android:text="Select Blood Group"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
-                app:fontFamily="@font/fontdiner_swanky"
+                app:fontFamily="@font/alfa_slab_one"
                 android:paddingTop="10dp"/>
 
 
@@ -168,12 +167,12 @@
                 android:layout_width="350dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/bginput"
+                android:background="@drawable/bgedittext"
                 android:layout_marginTop="5dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:id="@+id/spinnerbgroup"
-                android:popupBackground="@drawable/bgregister"/>
+                android:popupBackground="@drawable/bgedittext"/>
 
 
 
@@ -185,7 +184,7 @@
                 android:text="Select Gender"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
-                app:fontFamily="@font/fontdiner_swanky"
+                app:fontFamily="@font/alfa_slab_one"
                 android:paddingTop="10dp"/>
 
 
@@ -203,7 +202,7 @@
                     android:id="@+id/radioMale"
                     android:text="Male"
                     android:textSize="15sp"
-                    app:fontFamily="@font/fontdiner_swanky"
+                    app:fontFamily="@font/fredoka_one"
                     android:textColor="#FFFFFF"
                     android:onClick="radioButtonClick"
                     android:layout_marginRight="35dp"
@@ -216,7 +215,7 @@
                     android:id="@+id/radioFemale"
                     android:text="Female"
                     android:textSize="15sp"
-                    app:fontFamily="@font/fontdiner_swanky"
+                    app:fontFamily="@font/fredoka_one"
                     android:textColor="#FFFFFF"
                     android:onClick="radioButtonClick"/>
 
@@ -227,6 +226,7 @@
             <CheckBox
                 android:layout_width="350dp"
                 android:layout_height="60dp"
+                android:fontFamily="@font/fredoka_one"
                 android:text="I authorize this app and state that I am above 18 years old. I agree to display my details,so that Nearby could contact me."
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="30dp"
@@ -235,19 +235,20 @@
                 android:id="@+id/checkboxage"/>
 
 
-
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/btnsignup"
-                android:background="@drawable/bgbutton"
-                android:textColor="#FFFFFF"
-                android:text="Sign Up"
-                android:textAllCaps="false"
+                android:layout_width="133dp"
+                android:layout_height="51dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="35dp"
                 android:layout_marginBottom="35dp"
-                android:onClick="signUpClick"/>
+                android:background="@drawable/bgbutton"
+                android:fontFamily="@font/fredoka_one"
+                android:onClick="signUpClick"
+                android:text="Sign Up"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
 
 
 

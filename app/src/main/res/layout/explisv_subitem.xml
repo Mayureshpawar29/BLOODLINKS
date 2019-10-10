@@ -17,6 +17,7 @@
         android:layout_height="match_parent"
         android:textSize="18sp"
         android:translationX="50dp"
+        android:fontFamily="@font/fredoka_one"
         android:gravity="center_vertical"/>
 
 </RelativeLayout>
