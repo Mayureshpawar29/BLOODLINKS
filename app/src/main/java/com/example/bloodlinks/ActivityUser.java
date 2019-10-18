@@ -165,25 +165,43 @@ public class ActivityUser extends AppCompatActivity implements NavigationView.On
     }
 
     private void removeDonor() {
-        donorsRef.whereEqualTo("email",firebaseUser.getEmail())
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        donorsRef.document(firebaseUser.getEmail()).delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()) {
-                            for (DocumentSnapshot document : task.getResult()) {
-                                donorsRef.document(document.getId()).delete();
-                            }
-                            firebaseAuth.signOut();
-                            firebaseUser.delete();
-                            finish();
-                            startActivity(new Intent(ActivityUser.this,ActivityHome.class));
-                            Toast.makeText(ActivityUser.this, "Account deleted successfully!", Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                            Toast.makeText(ActivityUser.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                    public void onSuccess(Void aVoid) {
+                        firebaseUser.delete();
+                        finish();
+                        startActivity(new Intent(ActivityUser.this,ActivityHome.class));
+                        Toast.makeText(ActivityUser.this, "Account deleted successfully!", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(ActivityUser.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                     }
                 });
+//        donorsRef.whereEqualTo("email",firebaseUser.getEmail())
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        for (DocumentSnapshot document : queryDocumentSnapshots) {
+//                            donorsRef.document(document.getId()).delete();
+//                        }
+//                        firebaseUser.delete();
+//                        finish();
+//                        startActivity(new Intent(ActivityUser.this,ActivityHome.class));
+//                        Toast.makeText(ActivityUser.this, "Account deleted successfully!", Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Toast.makeText(ActivityUser.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+//
+//                    }
+//                });
     }
 
     @Override

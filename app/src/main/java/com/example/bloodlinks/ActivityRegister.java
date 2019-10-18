@@ -134,12 +134,11 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
 
         Donor donor = new Donor(uname, umail, umob, bloodgroup, latitude, longitude,actv.getText().toString(), gender);
 
-        donorsRef.add(donor)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        donorsRef.document(umail).set(donor)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
+                    public void onSuccess(Void aVoid) {
                         Toast.makeText(ActivityRegister.this, "data saved", Toast.LENGTH_SHORT).show();
-
                         sendEmailVerification();
                     }
                 })
