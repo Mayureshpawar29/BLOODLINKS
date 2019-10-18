@@ -96,10 +96,10 @@ public class ActivityLogin extends AppCompatActivity {
 
                             if(task.isSuccessful()){
                                 progressDialog.dismiss();
-                                //checkEmailVerification();
-                                finish();
-                                Toast.makeText(ActivityLogin.this,"login successful",Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(ActivityLogin.this,ActivityUser.class));
+                                checkEmailVerification();
+//                                finish();
+//                                Toast.makeText(ActivityLogin.this,"login successful",Toast.LENGTH_SHORT).show();
+//                                startActivity(new Intent(ActivityLogin.this,ActivityUser.class));
                             }
                             else{
                                 progressDialog.dismiss();

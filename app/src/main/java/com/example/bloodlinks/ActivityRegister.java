@@ -147,6 +147,8 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Toast.makeText(ActivityRegister.this, "data saved", Toast.LENGTH_SHORT).show();
+
+                        sendEmailVerification();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -210,8 +212,8 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
 
             progressDialog.setTitle("Creating User");
             progressDialog.show();
-            String uemail = etregisteremail.getText().toString().trim();
-            String upassword = etregisterpassword.getText().toString().trim();
+            final String uemail = etregisteremail.getText().toString().trim();
+            final String upassword = etregisterpassword.getText().toString().trim();
 
             placesRef.whereEqualTo("location",actv.getText().toString())
                     .addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -225,33 +227,33 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
                                 latitude=Double.valueOf(doc.getString("latitude"));
                                 longitude=Double.valueOf(doc.getString("longitude"));
                             }
+
+
+                            firebaseAuth.createUserWithEmailAndPassword(uemail,upassword)
+                                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                            if(task.isSuccessful()){
+                                                saveData();
+
+
+
+                                            }
+                                            else{
+
+                                                progressDialog.dismiss();
+                                                Toast.makeText(ActivityRegister.this, "Registration Unsuccessful", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+
+
+
                         }
                     });
 
-            firebaseAuth.createUserWithEmailAndPassword(uemail,upassword)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            if(task.isSuccessful()){
-                                saveData();
-                                progressDialog.dismiss();
-                                //sendEmailVerification();
-                                Toast.makeText(ActivityRegister.this, "Registration successful", Toast.LENGTH_SHORT).show();
-
-                                finish();
-
-                                startActivity(new Intent(ActivityRegister.this,ActivityLogin.class));
-
-
-                            }
-                            else{
-
-                                progressDialog.dismiss();
-                                Toast.makeText(ActivityRegister.this, "Registration Unsuccessful", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
         }
     }
 
@@ -277,7 +279,7 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
                         Toast.makeText(ActivityRegister.this, "Registration successful,verification email sent", Toast.LENGTH_SHORT).show();
                         firebaseAuth.signOut();
                         finish();
-
+                        progressDialog.dismiss();
                         startActivity(new Intent(ActivityRegister.this,ActivityLogin.class));
 
                     }
@@ -285,12 +287,5 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
             });
 
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        finish();
-        startActivity(new Intent(ActivityRegister.this,ActivityLogin.class));
-
     }
 }
