@@ -42,9 +42,6 @@ public class ActivityLogin extends AppCompatActivity {
         }
 
         setupViews();
-
-
-
         btnsignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,6 +53,7 @@ public class ActivityLogin extends AppCompatActivity {
         txtGotoRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finish();
                 startActivity(new Intent(ActivityLogin.this,ActivityRegister.class));
             }
         });
@@ -63,6 +61,7 @@ public class ActivityLogin extends AppCompatActivity {
         txtforgotpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finish();
                 startActivity(new Intent(ActivityLogin.this,ActivityResetPassword.class));
             }
         });
@@ -77,7 +76,7 @@ public class ActivityLogin extends AppCompatActivity {
         etloginpassword = findViewById(R.id.etloginpassword);
         btnsignin = findViewById(R.id.btnsignin);
         progressDialog = new ProgressDialog(this);
-
+        progressDialog.setCancelable(false);
     }
 
 
@@ -97,8 +96,10 @@ public class ActivityLogin extends AppCompatActivity {
 
                             if(task.isSuccessful()){
                                 progressDialog.dismiss();
-                                checkEmailVerification();
-
+                                //checkEmailVerification();
+                                finish();
+                                Toast.makeText(ActivityLogin.this,"login successful",Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(ActivityLogin.this,ActivityUser.class));
                             }
                             else{
                                 progressDialog.dismiss();
@@ -106,11 +107,10 @@ public class ActivityLogin extends AppCompatActivity {
                             }
                         }
                     });
-
         }
-
-
     }
+
+
 
     private void checkEmailVerification(){
 
@@ -130,4 +130,10 @@ public class ActivityLogin extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(ActivityLogin.this,ActivityHome.class));
+
+    }
 }

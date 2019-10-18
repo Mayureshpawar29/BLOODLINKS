@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
@@ -271,5 +272,11 @@ public class MapsActivity extends FragmentActivity implements
             LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(MapsActivity.this,ActivityHome.class));
+        finish();
     }
 }

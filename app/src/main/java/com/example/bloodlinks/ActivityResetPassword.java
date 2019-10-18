@@ -59,19 +59,16 @@ public class ActivityResetPassword extends AppCompatActivity {
 
 
                                     }
-
-
-
                                 }
                             });
-
                 }
-
-
             }
         });
+    }
 
-
-
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(ActivityResetPassword.this,ActivityLogin.class));
+        finish();
     }
 }

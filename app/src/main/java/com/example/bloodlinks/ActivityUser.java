@@ -64,10 +64,7 @@ public class ActivityUser extends AppCompatActivity implements NavigationView.On
                 for(QueryDocumentSnapshot documentSnapshot:queryDocumentSnapshots){
                     Donor donor = documentSnapshot.toObject(Donor.class);
                     txtUsername.setText(donor.getName());
-
                 }
-
-
             }
         });
 
@@ -84,10 +81,6 @@ public class ActivityUser extends AppCompatActivity implements NavigationView.On
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset)
             {
-
-                //this code-block is the real player behind this beautiful ui
-                // basically, it's a mathemetical calculation which handles the shrinking of
-                // our content view.
 
                 float scaleFactor = 7f;
                 float slideX = drawerView.getWidth() * slideOffset;
@@ -154,16 +147,13 @@ public class ActivityUser extends AppCompatActivity implements NavigationView.On
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 removeDonor();
-                                firebaseAuth.signOut();
-                                firebaseUser.delete();
-                                finish();
-                                startActivity(new Intent(ActivityUser.this,ActivityHome.class));
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dialogInterface.dismiss();
+                                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
                             }
                         }).create().show();
                 break;
@@ -184,6 +174,10 @@ public class ActivityUser extends AppCompatActivity implements NavigationView.On
                             for (DocumentSnapshot document : task.getResult()) {
                                 donorsRef.document(document.getId()).delete();
                             }
+                            firebaseAuth.signOut();
+                            firebaseUser.delete();
+                            finish();
+                            startActivity(new Intent(ActivityUser.this,ActivityHome.class));
                             Toast.makeText(ActivityUser.this, "Account deleted successfully!", Toast.LENGTH_SHORT).show();
                         }
                         else
@@ -192,5 +186,9 @@ public class ActivityUser extends AppCompatActivity implements NavigationView.On
                 });
     }
 
-
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(ActivityUser.this,ActivityHome.class));
+        finish();
+    }
 }

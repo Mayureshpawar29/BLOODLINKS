@@ -236,7 +236,13 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
                             if(task.isSuccessful()){
                                 saveData();
                                 progressDialog.dismiss();
-                                sendEmailVerification();
+                                //sendEmailVerification();
+                                Toast.makeText(ActivityRegister.this, "Registration successful", Toast.LENGTH_SHORT).show();
+
+                                finish();
+
+                                startActivity(new Intent(ActivityRegister.this,ActivityLogin.class));
+
 
                             }
                             else{
@@ -279,5 +285,12 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
             });
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(ActivityRegister.this,ActivityLogin.class));
+
     }
 }

@@ -121,7 +121,7 @@
                 android:completionThreshold="1"
                 android:completionHint="Select a nearby place"
                 android:id="@+id/etautocomp"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="#000000"
                 />
 
 
@@ -233,15 +233,15 @@
 
 
             <CheckBox
-                android:layout_width="350dp"
-                android:layout_height="60dp"
-                android:fontFamily="@font/fredoka_one"
-                android:text="I authorize this app and state that I am above 18 years old. I agree to display my details,so that Nearby could contact me."
+                android:id="@+id/checkboxage"
+                android:layout_width="344dp"
+                android:layout_height="97dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="30dp"
+                android:fontFamily="@font/fredoka_one"
+                android:text="I authorize this app and state that I am above 18 years old. I agree to display my details,so that Nearby could contact me."
                 android:textColor="#FFFFFF"
-                android:textSize="15sp"
-                android:id="@+id/checkboxage"/>
+                android:textSize="15sp" />
 
 
             <Button

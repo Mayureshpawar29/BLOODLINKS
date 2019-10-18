@@ -72,7 +72,6 @@ public class ActivityDonors extends AppCompatActivity {
                             count++;
                         }
 
-                        //sort function
                         Collections.sort(donorArrayList,Donor.StuNameComparator);
 
                         Iterator it = donorArrayList.iterator();
@@ -83,7 +82,6 @@ public class ActivityDonors extends AppCompatActivity {
                             gen.add(dr.getGender());
                             loc.add(dr.getLocation());
 
-                            //logic for calculating distance
                             Location locationA = new Location("point A");
 
                             locationA.setLatitude(Donor.lati);
@@ -147,9 +145,9 @@ public class ActivityDonors extends AppCompatActivity {
     }
 
     @Override
-    public void finish() {
+    public void onBackPressed() {
+        finish();
         Intent x=new Intent(ActivityDonors.this,ActivityHome.class);
         startActivity(x);
-        super.finish();
     }
 }

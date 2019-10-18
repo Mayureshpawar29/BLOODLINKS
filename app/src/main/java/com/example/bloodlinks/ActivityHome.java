@@ -71,6 +71,7 @@ public class ActivityHome extends AppCompatActivity {
                                  if(count!=0) {
                                      Intent i = new Intent(ActivityHome.this, ActivityDonors.class);
                                      i.putExtra("bg", bgs[index]);
+                                     finish();
                                      startActivity(i);
                                  } else
                                      Toast.makeText(ActivityHome.this, "No donors with specified Blood group !!", Toast.LENGTH_SHORT).show();
@@ -84,11 +85,13 @@ public class ActivityHome extends AppCompatActivity {
             @Override
             public void onMenuOpenAnimationStart(@NonNull CircleMenuView view) {
                 bd.setEnabled(false);
+                bb.setEnabled(false);
             }
 
             @Override
             public void onMenuCloseAnimationStart(@NonNull CircleMenuView view) {
                 bd.setEnabled(true);
+                bb.setEnabled(true);
             }
         });
 
@@ -96,6 +99,7 @@ public class ActivityHome extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(ActivityHome.this,ActivityLogin.class);
+                finish();
                 startActivity(i);
             }
         });
@@ -103,6 +107,7 @@ public class ActivityHome extends AppCompatActivity {
         bb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finish();
                 startActivity(new Intent(ActivityHome.this,MapsActivity.class));
             }
         });
