@@ -1,23 +1,24 @@
 package com.example.bloodlinks;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.diegodobelo.expandingview.ExpandingItem;
 import com.diegodobelo.expandingview.ExpandingList;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -27,13 +28,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
-import javax.annotation.Nullable;
-
 public class ActivityDonors extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference dr = db.collection("Donors");
     private ExpandingList el;
-    private ProgressDialog progressDialog;
     private ArrayList<String>names=new ArrayList<>();
     private ArrayList<String>gen=new ArrayList<>();
     private ArrayList<Float>dist=new ArrayList<>();
@@ -48,26 +46,19 @@ public class ActivityDonors extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donors);
 
-
         el=findViewById(R.id.elv);
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage("Loading...");
-        progressDialog.setCanceledOnTouchOutside(false);
+
         Intent intent=getIntent();
         Toast.makeText(this, intent.getStringExtra("bg"), Toast.LENGTH_SHORT).show();
 
-
         dr.whereEqualTo("bloodgroup",intent.getStringExtra("bg"))
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        if (e != null) {
-                            Toast.makeText(ActivityDonors.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        for(QueryDocumentSnapshot doc:queryDocumentSnapshots) {
-                            Donor d=doc.toObject(Donor.class);
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        ////////////////
+                        for(QueryDocumentSnapshot documentSnapshot:queryDocumentSnapshots) {
+                            Donor d=documentSnapshot.toObject(Donor.class);
                             donorArrayList.add(d);
                             count++;
                         }
@@ -100,7 +91,13 @@ public class ActivityDonors extends AppCompatActivity {
 
                         }
                         showView(count);
-
+                        ////////////////
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(ActivityDonors.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

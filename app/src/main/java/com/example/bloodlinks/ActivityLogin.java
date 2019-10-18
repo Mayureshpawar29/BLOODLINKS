@@ -45,7 +45,6 @@ public class ActivityLogin extends AppCompatActivity {
         btnsignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 validate(etloginemail.getText().toString().trim(),etloginpassword.getText().toString().trim());
             }
         });

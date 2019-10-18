@@ -65,8 +65,6 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
     private CollectionReference donorsRef = db.collection("Donors");
     private CollectionReference placesRef = db.collection("Places");
     private String bloodgroup,gender="Male";
-//    private LocationManager locationManager;
-//    private FusedLocationProviderClient fusedLocationProviderClient;
     private ProgressDialog progressDialog;
     private List<String> places;
     private AutoCompleteTextView actv;
@@ -78,10 +76,6 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
         places= Arrays.asList("Akurdi", "Ambegaon", "Aundh", "Balewadi", "Baner", "Bavdhan", "Bhavani Peth", "Bhosari", "Bibvewadi", "Budhwar Peth", "Chakan", "Charholi Budruk", "Chikhli", "Chinchwad", "Dapodi", "Dehu Road", "Dhankawadi", "Dhanori", "Dhayari", "Dighi", "Dudulgaon", "Erandwane", "Fursungi", "Ganesh Peth", "Ganesh khind", "Ghorpade Peth", "Ghorpadi", "Guruwar Peth", "Hadapsar", "Hinjwadi", "Kalas", "Kalewadi", "Kasarwadi", "Kasba Peth", "Katraj", "Khadki", "Kharadi", "Kondhwa", "Koregaon Park", "Kothrud", "Mahatma Phule Peth", "Mangalwar Peth", "Manjri", "Markal", "Mohammedwadi", "Moshi", "Mundhwa", "Nana Peth", "Narayan Peth", "Navi Peth", "Panmala", "Parvati", "Pashan", "Phugewadi", "Pimple Gurav", "Pimple Nilakh", "Pimple Saudagar", "Pimpri", "Pirangut", "Rahatani", "Rasta Peth", "Ravet", "Raviwar Peth", "Sadashiv Peth", "Sangvi", "Saswad", "Shaniwar Peth", "Shivajinagar ", "Shukrawar Peth", "Somwar Peth", "Talawade", "Tathawade", "Thergaon", "Undri", "Vadgaon Budruk", "Vishrantwadi", "Vitthalwadi", "Wadgaon Sheri", "Wagholi", "Wakad", "Wanwadi", "Warje", "Yerwada");
         setupViews();
         firebaseAuth = FirebaseAuth.getInstance();
-
-//        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-//        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-
     }
 
     private void setupViews() {
@@ -131,8 +125,6 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
 //        });
 //
 //    }
-
-
 
     private void saveData() {
 
@@ -236,12 +228,8 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
 
                                             if(task.isSuccessful()){
                                                 saveData();
-
-
-
                                             }
                                             else{
-
                                                 progressDialog.dismiss();
                                                 Toast.makeText(ActivityRegister.this, "Registration Unsuccessful", Toast.LENGTH_SHORT).show();
                                             }
@@ -287,5 +275,11 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
             });
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(ActivityRegister.this,ActivityLogin.class));
     }
 }

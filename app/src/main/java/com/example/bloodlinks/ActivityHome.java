@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,12 +18,15 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.EventListener;
@@ -57,28 +61,32 @@ public class ActivityHome extends AppCompatActivity {
                 final String bgs[]={"A+","B+","O+","AB+","A-","B-","O-","AB-"};
 
                 dr.whereEqualTo("bloodgroup",bgs[index])
-                        .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                             @Override
-                             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                                 if (e != null) {
-                                     Toast.makeText(ActivityHome.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
-                                     return;
-                                 }
-                                 for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                                     Donor d = doc.toObject(Donor.class);
-                                     count++;
-                                 }
-                                 if(count!=0) {
-                                     Intent i = new Intent(ActivityHome.this, ActivityDonors.class);
-                                     i.putExtra("bg", bgs[index]);
-                                     finish();
-                                     startActivity(i);
-                                 } else
-                                     Toast.makeText(ActivityHome.this, "No donors with specified Blood group !!", Toast.LENGTH_SHORT).show();
-                                 bd.setEnabled(true);
-                                 count=0;
-                             }
-                         });
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                ////////////////
+                                for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                                    count++;
+                                }
+                                ////////////////
+                                if(count!=0) {
+                                    Intent i = new Intent(ActivityHome.this, ActivityDonors.class);
+                                    i.putExtra("bg", bgs[index]);
+                                    finish();
+                                    startActivity(i);
+                                } else
+                                    Toast.makeText(ActivityHome.this, "No donors with specified Blood group !!", Toast.LENGTH_SHORT).show();
+                                bd.setEnabled(true);
+                                count=0;
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(ActivityHome.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
             }
 
