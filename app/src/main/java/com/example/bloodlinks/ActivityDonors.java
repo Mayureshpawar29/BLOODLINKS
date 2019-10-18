@@ -3,6 +3,7 @@ package com.example.bloodlinks;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
@@ -39,6 +40,7 @@ public class ActivityDonors extends AppCompatActivity {
     private ArrayList<String>loc=new ArrayList<>();
     private int count=0;
     private ArrayList<Donor> donorArrayList=new ArrayList<>();
+    private ProgressDialog progressDialog;
 
 
     @Override
@@ -47,10 +49,12 @@ public class ActivityDonors extends AppCompatActivity {
         setContentView(R.layout.activity_donors);
 
         el=findViewById(R.id.elv);
+        progressDialog=new ProgressDialog(this);
 
         Intent intent=getIntent();
         Toast.makeText(this, intent.getStringExtra("bg"), Toast.LENGTH_SHORT).show();
 
+        progressDialog.show();
         dr.whereEqualTo("bloodgroup",intent.getStringExtra("bg"))
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -139,6 +143,8 @@ public class ActivityDonors extends AppCompatActivity {
                 ei[i].setIndicatorIconRes(R.drawable.ic_woman);
             ei[i].setIndicatorColorRes(R.color.red_icon);
         }
+
+        progressDialog.dismiss();
     }
 
     @Override
