@@ -4,7 +4,6 @@ import android.location.Location;
 
 import java.util.Comparator;
 
-// Is this donor?
 public class Donor {
     private String name,email,mobile,bloodgroup,gender,location;
     private Double longitude,latitude;
